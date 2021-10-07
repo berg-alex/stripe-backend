@@ -18,6 +18,10 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY, {
 
 var port = process.env.PORT || 4242;
 
+var proxy = require('express-http-proxy');
+
+app.use('/proxy', proxy('https://stripe-one-time-pay.herokuapp.com'));
+
 app.use(express.static(process.env.STATIC_DIR));
 app.use(express.urlencoded());
 app.use(
