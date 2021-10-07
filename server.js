@@ -16,6 +16,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY, {
   }
 });
 
+var port = process.env.PORT || 4242;
 
 app.use(express.static(process.env.STATIC_DIR));
 app.use(express.urlencoded());
@@ -125,7 +126,7 @@ app.post('/webhook', async (req, res) => {
   res.sendStatus(200);
 });
 
-app.listen(4242, () => console.log(`Node server listening on port ${4242}!`));
+app.listen(port, () => console.log(`Node server listening on port ${port}!`));
 
 
 function checkEnv() {
